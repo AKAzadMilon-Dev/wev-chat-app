@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { getAuth } from '../Firebase';
 import { setUser,clearUser } from '../actions';
 import {connect} from 'react-redux';
-import { Col, Row, Spinner } from 'react-bootstrap';
+import { Col, Container, Row, Spinner } from 'react-bootstrap';
 import ColorPanel from './colorPanel/ColorPanel';
 import SidePanel from './sidePanel/SidePanel';
 import Message from './message/Message';
@@ -34,21 +34,23 @@ class App extends Component {
     :
     (
       <>
-        <div>
-          <Row>
-            <Col style={{ color:"#fff"}} md={1}>
-              <ColorPanel></ColorPanel>
-            </Col>
-            <Col style={{background:"#ECF3FF", color:"#fff"}} md={3}>
-              <SidePanel userName={this.props.userName.displayName}></SidePanel>
-            </Col>
-            <Col style={{background:"#ECF3FF", color:"black", textAlign:"center"}} md={5}>
-              <Message userId={this.props.userName} groupId={this.props.groupId}></Message>
-            </Col>
-            <Col style={{background:"#ECF3FF", color:"#fff"}} md={3}>
-              <MetaPanel></MetaPanel>
-            </Col>
-          </Row>
+        <div style={{background:"#1F6F8B"}}>
+          <Container fluid >
+            <Row>
+              <Col  md={1}>
+                <ColorPanel></ColorPanel>
+              </Col>
+              <Col  md={2}>
+                <SidePanel userName={this.props.userName.displayName} user={this.props.userName}></SidePanel>
+              </Col>
+              <Col  md={7}>
+                <Message userId={this.props.userName} groupId={this.props.groupId}></Message>
+              </Col>
+              <Col md={2}>
+                <MetaPanel></MetaPanel>
+              </Col>
+            </Row>
+          </Container>
         </div>
       </>
     )

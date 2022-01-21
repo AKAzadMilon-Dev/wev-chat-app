@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword, updateProfile,signInWithEmailAndPassword, GoogleAuthProvider,signInWithPopup,FacebookAuthProvider,signOut   } from "firebase/auth";
-import { getDatabase, ref, set,push,onValue,child,onChildAdded,onChildChanged } from "firebase/database";
+import { getDatabase, ref, set,push,onValue,child,onChildAdded,onChildChanged,onDisconnect, onChildRemoved,remove } from "firebase/database";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBZbNr31ZCaoGJArfJSJgV4x4OmAc6-oU8",
@@ -15,4 +15,4 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
-export {getAuth, createUserWithEmailAndPassword, updateProfile, getDatabase, ref, set,signInWithEmailAndPassword, GoogleAuthProvider,signInWithPopup,FacebookAuthProvider,signOut,push,onValue,child,onChildAdded,onChildChanged}
+export {getAuth, createUserWithEmailAndPassword, updateProfile, getDatabase, ref, set,signInWithEmailAndPassword, GoogleAuthProvider,signInWithPopup,FacebookAuthProvider,signOut,push,onValue,child,onChildAdded,onChildChanged,onDisconnect,onChildRemoved,remove}

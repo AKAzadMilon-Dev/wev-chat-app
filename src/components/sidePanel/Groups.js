@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Row, Col,Modal,Button,Form, Alert, Dropdown } from 'react-bootstrap';
+import { Modal,Button,Form, Alert, Dropdown } from 'react-bootstrap';
 import { FcPlus, FcAlphabeticalSortingZa } from "react-icons/fc";
+import { BsPeopleFill } from "react-icons/bs";
 import { getDatabase, ref, set,push,onValue } from '../../Firebase';
 import { connect } from 'react-redux';
 import {setGroup} from '../../actions'
@@ -98,61 +99,63 @@ class Groups extends Component {
         const {groups,idx,variant,error,groupname,grouptagline} = this.state
         return (
             <>
-                <Row>
-                    <Col>
-                        <Dropdown.Header style={{ fontSize:"14px", fontWeight:"bold"}}>
-                            Groups ({groups.length})
-                            <FcPlus onClick={this.openModal} style={{fontSize:"30px", marginLeft:"160px"}}/>
-                        </Dropdown.Header>
-                        <div style={{marginTop:"10px", color:"black"}}>
-                            {this.state.groups.map((item)=>(
-                                <Dropdown.Header onClick={()=>this.groupChange(item)} style={{color:"#fff", fontSize:"14px"}} style={item.id == this.state.active ? menuListActiove:menuList}>{item.groupname}</Dropdown.Header>
-                            ))}
-                        </div>
-                    </Col>
+                <Dropdown.Header style={{ fontSize:"18px",color:"#fff", fontWeight:"bold", display:"flex", justifyContent:"space-between"}}>
+                    Groups ({groups.length})
+                    <FcPlus onClick={this.openModal} style={{fontSize:"25px"}}/>
+                </Dropdown.Header>
+                <div style={{marginTop:"10px", color:"black", cursor:"pointer"}}>
+                    
+                    {this.state.groups.map((item)=>(
+                        <Dropdown.Header onClick={()=>this.groupChange(item)} style={{color:"#fff", fontSize:"14px"}} style={item.id == this.state.active ? menuListActiove:menuList}><BsPeopleFill style={{border:"2px solid black", borderRadius:"50%", fontSize:"20px"}}/> {item.groupname}</Dropdown.Header>
+                    ))}
+                </div>
+                <Dropdown.Divider/>
+                <Dropdown.Divider/>
+                
+                {/* Modal */}
 
-                    <Modal show={this.state.modal} onHide={false}>
-                        <Modal.Header>
-                            <Modal.Title><FcAlphabeticalSortingZa style={{marginRight:"20px", marginLeft:"110px", background:"#FFA400"}}/>Add Groups Details</Modal.Title>
-                        </Modal.Header>
-                        <Modal.Body>
-                            <Form onSubmit={this.handleSubmit}>
-                                <Form.Group className="mb-3" >
-                                    <Form.Label>Group Name</Form.Label>
-                                    <Form.Control onChange={this.handleChange} name="groupname" type="email" placeholder="Group Name" value={groupname} />
-                                </Form.Group>
-                                <Form.Group className="mb-3" >
-                                    <Form.Label>Group Tagline</Form.Label>
-                                    <Form.Control onChange={this.handleChange} name="grouptagline" type="text" placeholder="Group Tagline" value={grouptagline} />
-                                </Form.Group>
-                            </Form>
-                            {/* Error Message Start */}
-                            {error ? <Alert style={{ color:"red"}} key={idx} variant={variant}>
-                                {error}
-                            </Alert>: ""}
-                            {/* Error Message End */}
-                        </Modal.Body>
-                        <Modal.Footer>
-                            <Button variant="secondary" onClick={this.handleClose}>Close</Button>
-                            <Button variant="primary" onClick={this.handleSubmit}>Add Group</Button>
-                        </Modal.Footer>
-                    </Modal>
-                </Row>
+                <Modal show={this.state.modal} onHide={false}>
+                    <Modal.Header>
+                        <Modal.Title><FcAlphabeticalSortingZa style={{marginRight:"20px", marginLeft:"110px", background:"#FFA400"}}/>Add Groups Details</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Form onSubmit={this.handleSubmit}>
+                            <Form.Group className="mb-3" >
+                                <Form.Label>Group Name</Form.Label>
+                                <Form.Control onChange={this.handleChange} name="groupname" type="email" placeholder="Group Name" value={groupname} />
+                            </Form.Group>
+                            <Form.Group className="mb-3" >
+                                <Form.Label>Group Tagline</Form.Label>
+                                <Form.Control onChange={this.handleChange} name="grouptagline" type="text" placeholder="Group Tagline" value={grouptagline} />
+                            </Form.Group>
+                        </Form>
+                        {/* Error Message Start */}
+                        {error ? <Alert style={{ color:"red"}} key={idx} variant={variant}>
+                            {error}
+                        </Alert>: ""}
+                        {/* Error Message End */}
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={this.handleClose}>Close</Button>
+                        <Button variant="primary" onClick={this.handleSubmit}>Add Group</Button>
+                    </Modal.Footer>
+                </Modal>
             </>
         )
     }
 }
 
 const menuList ={
-    color: "black",
+    color: "#fff",
     fontSize: "16px",
     paddingLeft: "20px"
 }
 const menuListActiove ={
-    color: "black",
+    color: "#198754",
     paddingLeft: "20px",
-    background: "#D9D7F1",
+    background: "#A2B29F",
     fontSize: "16px",
+    fontWeight:"bold"
 }
 
 export default connect(null,{setGroup}) (Groups)

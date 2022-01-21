@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Col, Row, Form, Button, Alert, Image } from 'react-bootstrap';
+import { Col, Row, Form, Button, Alert, Image, Container } from 'react-bootstrap';
 import {getAuth, signInWithEmailAndPassword,GoogleAuthProvider,signInWithPopup,FacebookAuthProvider } from '../../Firebase';
 
 export default class Login extends Component {
@@ -97,51 +97,53 @@ export default class Login extends Component {
                     <div style={{textAlign:"center", marginTop:"50px"}}>
                         <h1 >Login</h1>
                     </div>
-                    <Row >
-                        <Col md={4}>
-                            <Image fluid style={{marginTop:"20px"}} src="images/5.png"/>
-                        </Col>
-                        <Col md={4} style={{marginTop:"30px"}}>
-                            <div style={{textAlign:"center"}}>
-                                {/* Error Message Start */}
-                                {errorMsg ? <Alert style={{ color:"red"}} key={idx} variant={variant}>
-                                    {errorMsg}
-                                </Alert>: ""}
-                                {/* Error Message End */}
-                            </div>
-                            <Form style={{marginTop:"60px", border:"3px solid #E6E6E6", padding:"15px"}}>
-                            {this.state.errorMsg.includes("email")? this.state.errorMsg : ""}    
-                                <Form.Group className="mb-3" >
-                                    <Form.Label>Email address</Form.Label>
-                                    <Form.Control onChange={this.handleChange}  name="email" type="email" placeholder="Enter email" value={email} />
-                                </Form.Group>
-                                {/* {this.state.errorMsg.includes("password")? this.state.errorMsg : ""} */}
-                                <Form.Group className="mb-3" >
-                                    <Form.Label>Password</Form.Label>
-                                    <Form.Control onChange={this.handleChange} name="password" type="password" placeholder="Password" value={password} />
-                                </Form.Group>
-                                <div className="d-grid gap-2">
-                                    <Button onClick={this.handleSubmit} variant="primary">
-                                        Log In
-                                    </Button>
+                    <Container fluid>
+                        <Row >
+                            <Col md={4}>
+                                <Image fluid style={{marginTop:"20px"}} src="images/5.png"/>
+                            </Col>
+                            <Col md={4} style={{marginTop:"30px"}}>
+                                <div style={{textAlign:"center"}}>
+                                    {/* Error Message Start */}
+                                    {errorMsg ? <Alert style={{ color:"red"}} key={idx} variant={variant}>
+                                        {errorMsg}
+                                    </Alert>: ""}
+                                    {/* Error Message End */}
                                 </div>
-                                
-                                <div style={{marginTop:"15px", textAlign:"center"}}>
-                                    <Alert>
-                                    <h6>Don't Have An Account ? <Link to="/register">Sign In</Link> </h6>
-                                    </Alert>
-
-                                    <div style={{marginTop:"15px", textAlign:"center", display:"flex", justifyContent:"space-between"}}>
-                                    <Button onClick={this.handleGoogleSubmit} variant="success">Sign in With Google</Button>
-                                    <Button onClick={this.handleFacebookSubmit} variant="success">Sign In With Facebook</Button>
+                                <Form style={{marginTop:"60px", border:"3px solid #E6E6E6", padding:"15px"}}>
+                                {this.state.errorMsg.includes("email")? this.state.errorMsg : ""}    
+                                    <Form.Group className="mb-3" >
+                                        <Form.Label>Email address</Form.Label>
+                                        <Form.Control onChange={this.handleChange}  name="email" type="email" placeholder="Enter email" value={email} />
+                                    </Form.Group>
+                                    {/* {this.state.errorMsg.includes("password")? this.state.errorMsg : ""} */}
+                                    <Form.Group className="mb-3" >
+                                        <Form.Label>Password</Form.Label>
+                                        <Form.Control onChange={this.handleChange} name="password" type="password" placeholder="Password" value={password} />
+                                    </Form.Group>
+                                    <div className="d-grid gap-2">
+                                        <Button onClick={this.handleSubmit} variant="primary">
+                                            Log In
+                                        </Button>
                                     </div>
-                                </div>
-                            </Form>
-                        </Col>
-                        <Col  md={4}>
-                            <Image fluid style={{marginTop:"20px"}}  src="images/4.png"/>
-                        </Col>
-                    </Row>
+                                    
+                                    <div style={{marginTop:"15px", textAlign:"center"}}>
+                                        <Alert>
+                                        <h6>Don't Have An Account ? <Link to="/register">Sign In</Link> </h6>
+                                        </Alert>
+
+                                        <div style={{marginTop:"15px", textAlign:"center", display:"flex", justifyContent:"space-between"}}>
+                                        <Button onClick={this.handleGoogleSubmit} variant="success">Sign in With Google</Button>
+                                        <Button onClick={this.handleFacebookSubmit} variant="success">Sign In With Facebook</Button>
+                                        </div>
+                                    </div>
+                                </Form>
+                            </Col>
+                            <Col  md={4}>
+                                <Image fluid style={{marginTop:"20px"}}  src="images/4.png"/>
+                            </Col>
+                        </Row>
+                    </Container>
                 </div>
             </>
         )

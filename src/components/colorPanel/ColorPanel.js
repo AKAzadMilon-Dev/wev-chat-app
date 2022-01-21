@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
-import { Button, Col, Dropdown, Row } from 'react-bootstrap';
+import { Button, Card,Dropdown } from 'react-bootstrap';
 
 export default class ColorPanel extends Component {
     render() {
         return (
             <>
-                <Row style={{height:"100vh"}}>
-                    <Col style={{background:"black", color:"#fff", textAlign:"center"}} >
-                        <Dropdown.Item style={{color:"#fff"}} >Color Panel</Dropdown.Item>
-                        <Dropdown.Divider />
-                        <Button variant="primary">Primary</Button>
-                    </Col>
-                </Row>
+                <Card style={{height:"100vh", background:"#1F6F8B", color:"#fff"}}>
+                    <h5 style={{textAlign:"center",padding:"10px"}}>Color Panel</h5>
+                    <Dropdown.Divider/>
+                    <Card.Body >
+                        <div style={{display:"flex", justifyContent:"center"}}>
+                            <Button variant="primary">Primary</Button>
+                        </div>
+                    </Card.Body>
+                </Card>
             </>
         )
     }
